@@ -1,21 +1,19 @@
-import React, { Component } from 'react'
-import Video from './Video'
-import Home from './Home'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+let express = require( 'express' );
+let app = express();
+let server = require( 'http' ).Server( app );
+let io = require( 'socket.io' )( server );
+let stream = require( './ws/stream' );
+let path = require( 'path' );
+let favicon = require( 'serve-favicon' );
 
-class App extends Component {
-	render() {
-		return (
-			<div>
-				<Router>
-					<Switch>
-						<Route path="/" exact component={Home} />
-						<Route path="/:url" component={Video} />
-					</Switch>
-				</Router>
-			</div>
-		)
-	}
-}
+app.use( favicon( path.join( __dirname, 'favicon.ico' ) ) );
+app.use( '/assets', express.static( path.join( __dirname, 'assets' ) ) );
 
-export default App;
+app.get( '/', ( req, res ) => {
+    res.sendFile( __dirname + '/index.html' );
+} );
+
+
+io.of( '/stream' ).on( 'connection', stream );
+
+server.listen( 3000 );
