@@ -1,3 +1,10 @@
+body {
+	/* font-family: 'Roboto', sans-serif; */
+	/* font-size: 16px; */
+	background-image: url("pdm.jpg") ;
+	background-size: cover;
+	/* margin: 20px; */
+}
 .chat-col{
     right: -100vw;
     bottom: 0;
