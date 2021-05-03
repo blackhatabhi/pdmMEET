@@ -3,7 +3,7 @@ A conference call implementation using WebRTC, Socket.io and Node.js.
 
 
 # Getting Started
-- Run `npm ci`
+- Run `npm install`
 - `cd src`
 - `node app.js`
 
